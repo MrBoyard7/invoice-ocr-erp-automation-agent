@@ -1,0 +1,109 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "invoice-ocr-erp-automation-agent"
+version = "1.0.3"
+description = "Automated invoice capture, OCR extraction, and ERP (SADE-compatible) posting agent for Accounts Receivable and Accounts Payable."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Prince Boyard MBOUNGOU NGOMA", email = "contact@example.com" }
+]
+keywords = [
+    "ocr",
+    "invoice-automation",
+    "accounts-payable",
+    "accounts-receivable",
+    "erp-integration",
+    "zapier",
+    "parseur",
+    "dgii",
+    "ncf",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "SQLAlchemy>=2.0,<3.0",
+    "requests>=2.31,<3.0",
+    "python-dotenv>=1.0,<2.0",
+    "click>=8.1,<9.0",
+]
+
+[project.optional-dependencies]
+ocr-local = [
+    "pytesseract>=0.3.10",
+    "Pillow>=10.0",
+]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=24.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "types-requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/MrBoyard7/invoice-ocr-erp-automation-agent"
+Repository = "https://github.com/MrBoyard7/invoice-ocr-erp-automation-agent"
+Issues = "https://github.com/MrBoyard7/invoice-ocr-erp-automation-agent/issues"
+Changelog = "https://github.com/MrBoyard7/invoice-ocr-erp-automation-agent/blob/main/CHANGELOG.md"
+
+[project.scripts]
+invoice-automation = "invoice_automation.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+# UP007 ("Use `X | Y`") and UP045 ("Use `X | None`") are intentionally
+# ignored: this project supports Python 3.9+, and `from __future__ import
+# annotations` alone does not make `X | None` safe to evaluate at runtime
+# on 3.9 (Pydantic resolves annotation strings via `eval()`, which raises
+# TypeError for the PEP 604 `|` operator before Python 3.10). `Optional[X]`
+# is kept explicit instead.
+ignore = ["UP007", "UP045"]
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+disallow_untyped_defs = false
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.coverage.run]
+source = ["src/invoice_automation"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true

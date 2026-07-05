@@ -1,0 +1,18 @@
+{
+  "id": "doc-example-001",
+  "status": "processed",
+  "text": "FACTURA / INVOICE No. INV-1001\nFerreteria Popular SRL\nRNC: 130987654\nNCF: B0100000001\nFecha: 2026-06-15\nSubtotal: 10000.00\nITBIS (18%): 1800.00\nTotal: 11800.00",
+  "parsed": {
+    "invoice_number": "INV-1001",
+    "ncf": "B0100000001",
+    "issuer_rnc": "101223344",
+    "counterparty_rnc": "130987654",
+    "counterparty_name": "Ferreteria Popular SRL",
+    "issue_date": "2026-06-15",
+    "due_date": "2026-07-15",
+    "currency": "DOP",
+    "subtotal": "10000.00",
+    "tax_amount": "1800.00",
+    "total_amount": "11800.00"
+  }
+}
