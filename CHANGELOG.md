@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2026-07-06
+
+### Fixed
+- **Real Python 3.9 CI failure**: `erp/models.py` used PEP 604 union syntax
+  (`str | None`) directly inside `Mapped[...]` type hints. Unlike a plain
+  function parameter annotation, SQLAlchemy's declarative mapping actually
+  evaluates these annotations to determine column types, which raises
+  `TypeError` on genuine Python 3.9 (the `|` operator on `type` objects was
+  only added in 3.10) even with `from __future__ import annotations` in
+  effect. Replaced with `Mapped[Optional[str]]` / `Mapped[Optional[date]]`.
+- For consistency, also normalized two function-parameter annotations
+  (`session: requests.Session | None`) to `Optional[requests.Session]` in
+  `zapier_client.py` and `parseur_client.py`. These were not actually
+  evaluated at runtime and were not the cause of the CI failure, but keep
+  the codebase consistent with the Python 3.9 compatibility policy
+  documented in `pyproject.toml`.
+
 ## [1.0.3] - 2026-07-05
 
 ### Fixed

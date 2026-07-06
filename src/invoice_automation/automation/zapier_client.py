@@ -9,7 +9,7 @@ thin: its only responsibility is delivering a well-formed event payload.
 from __future__ import annotations
 
 import logging
-from typing import Any
+from typing import Any, Optional
 
 import requests
 
@@ -22,7 +22,9 @@ logger = logging.getLogger(__name__)
 class ZapierClient:
     """Sends invoice-processing events to a configured Zapier webhook."""
 
-    def __init__(self, settings: ZapierSettings, session: requests.Session | None = None) -> None:
+    def __init__(
+        self, settings: ZapierSettings, session: Optional[requests.Session] = None
+    ) -> None:
         self._settings = settings
         self._session = session or requests.Session()
 

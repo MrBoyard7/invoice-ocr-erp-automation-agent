@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import logging
 import time
-from typing import Any
+from typing import Any, Optional
 
 import requests
 
@@ -33,7 +33,7 @@ class ParseurClient(OCRClient):
         settings: ParseurSettings,
         poll_interval_seconds: int = DEFAULT_POLL_INTERVAL_SECONDS,
         max_poll_attempts: int = DEFAULT_MAX_POLL_ATTEMPTS,
-        session: requests.Session | None = None,
+        session: Optional[requests.Session] = None,
     ) -> None:
         self._settings = settings
         self._poll_interval_seconds = poll_interval_seconds

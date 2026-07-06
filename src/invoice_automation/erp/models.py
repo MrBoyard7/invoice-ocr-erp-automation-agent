@@ -10,6 +10,7 @@ staging/integration schema, or be adapted directly to the ERP's real schema.
 from __future__ import annotations
 
 from datetime import date, datetime
+from typing import Optional
 
 from sqlalchemy import DateTime, Numeric, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -27,16 +28,16 @@ class AccountsReceivableEntry(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     invoice_number: Mapped[str] = mapped_column(String(64), nullable=False)
-    ncf: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    ncf: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     customer_name: Mapped[str] = mapped_column(String(255), nullable=False)
-    customer_rnc: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    customer_rnc: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     issue_date: Mapped[date] = mapped_column(nullable=False)
-    due_date: Mapped[date | None] = mapped_column(nullable=True)
+    due_date: Mapped[Optional[date]] = mapped_column(nullable=True)
     currency: Mapped[str] = mapped_column(String(8), nullable=False, default="DOP")
     subtotal: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
     tax_amount: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
     total_amount: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
-    source_filename: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    source_filename: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
@@ -48,14 +49,14 @@ class AccountsPayableEntry(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     invoice_number: Mapped[str] = mapped_column(String(64), nullable=False)
-    ncf: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    ncf: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     vendor_name: Mapped[str] = mapped_column(String(255), nullable=False)
-    vendor_rnc: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    vendor_rnc: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
     issue_date: Mapped[date] = mapped_column(nullable=False)
-    due_date: Mapped[date | None] = mapped_column(nullable=True)
+    due_date: Mapped[Optional[date]] = mapped_column(nullable=True)
     currency: Mapped[str] = mapped_column(String(8), nullable=False, default="DOP")
     subtotal: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
     tax_amount: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
     total_amount: Mapped[float] = mapped_column(Numeric(18, 2), nullable=False, default=0)
-    source_filename: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    source_filename: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)

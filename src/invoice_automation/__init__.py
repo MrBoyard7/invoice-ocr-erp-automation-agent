@@ -17,4 +17,4 @@ See ``pipeline.py`` for the orchestrator that wires these stages together,
 and ``cli.py`` for the command-line entry point.
 """
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
