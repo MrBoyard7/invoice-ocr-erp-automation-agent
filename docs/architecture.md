@@ -9,28 +9,28 @@ stages connected by a thin pipeline orchestrator.
 
 ```mermaid
 flowchart LR
-    subgraph Capture
-        A1[Email inbox<br/>IMAP]
-        A2[Scanner / tablet<br/>watched folder]
+    subgraph Capture[Capture]
+        A1[Email inbox - IMAP]
+        A2[Scanner or tablet - watched folder]
     end
 
-    subgraph OCR["OCR extraction"]
+    subgraph OCR[OCR extraction]
         B1[Parseur API]
-        B2[Local Tesseract<br/>fallback]
+        B2[Local Tesseract fallback]
     end
 
-    subgraph Extraction
+    subgraph Extraction[Extraction]
         C1[Invoice parser]
-        C2[NCF validator<br/>DGII format]
+        C2[NCF validator - DGII format]
     end
 
-    subgraph Automation
+    subgraph Automation[Automation]
         D1[Zapier webhook]
     end
 
-    subgraph ERP["SADE ERP (SQL)"]
-        E1[(Accounts Receivable)]
-        E2[(Accounts Payable)]
+    subgraph ERP[SADE ERP - SQL database]
+        E1[Accounts Receivable]
+        E2[Accounts Payable]
     end
 
     A1 --> B1

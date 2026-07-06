@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "invoice-ocr-erp-automation-agent"
-version = "1.0.4"
+version = "1.0.5"
 description = "Automated invoice capture, OCR extraction, and ERP (SADE-compatible) posting agent for Accounts Receivable and Accounts Payable."
 readme = "README.md"
 requires-python = ">=3.9"

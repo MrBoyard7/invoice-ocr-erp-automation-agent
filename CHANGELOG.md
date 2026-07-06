@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2026-07-06
+
+### Fixed
+- GitHub failed to render the architecture diagram ("Cannot read properties
+  of undefined (reading 'render')") in both `README.md` and
+  `docs/architecture.md`. Simplified the Mermaid syntax: replaced the
+  cylinder/database shape (`[(...)]`) with plain rectangles, removed `<br/>`
+  HTML tags and `/` characters from node labels, and made all `subgraph`
+  declarations use the consistent `subgraph ID[Title]` form instead of
+  mixing bare IDs and quoted titles.
+
 ## [1.0.4] - 2026-07-06
 
 ### Fixed
