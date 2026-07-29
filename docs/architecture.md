@@ -9,29 +9,15 @@ stages connected by a thin pipeline orchestrator.
 
 ```mermaid
 flowchart LR
-    subgraph Capture[Capture]
-        A1[Email inbox - IMAP]
-        A2[Scanner or tablet - watched folder]
-    end
-
-    subgraph OCR[OCR extraction]
-        B1[Parseur API]
-        B2[Local Tesseract fallback]
-    end
-
-    subgraph Extraction[Extraction]
-        C1[Invoice parser]
-        C2[NCF validator - DGII format]
-    end
-
-    subgraph Automation[Automation]
-        D1[Zapier webhook]
-    end
-
-    subgraph ERP[SADE ERP - SQL database]
-        E1[Accounts Receivable]
-        E2[Accounts Payable]
-    end
+    A1[Capture: Email inbox - IMAP]
+    A2[Capture: Scanner or tablet]
+    B1[OCR: Parseur API]
+    B2[OCR: Local Tesseract fallback]
+    C1[Extraction: Invoice parser]
+    C2[Extraction: NCF validator - DGII format]
+    D1[Automation: Zapier webhook]
+    E1[ERP: Accounts Receivable]
+    E2[ERP: Accounts Payable]
 
     A1 --> B1
     A2 --> B1
@@ -87,3 +73,4 @@ flowchart LR
   database are all injected as dependencies (`InvoiceAutomationPipeline`
   constructor), which keeps the core workflow logic testable in isolation
   from any third-party service.
+  
